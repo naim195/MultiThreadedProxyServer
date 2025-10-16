@@ -1,15 +1,37 @@
-CC=gcc
-CFLAGS= -g -Wall 
+# Use the g++ compiler for C++
+CC=g++
+# Enable C++17 standard for features like std::thread, and link the pthread library
+CFLAGS= -g -Wall -std=c++17 -pthread
 
-all: proxy
+# Define the final executable name
+TARGET=proxy
 
-proxy: proxy_server_with_cache.c
-	$(CC) $(CFLAGS) -o proxy_parse.o -c proxy_parse.c -lpthread
-	$(CC) $(CFLAGS) -o proxy.o -c proxy_server_with_cache.c -lpthread
-	$(CC) $(CFLAGS) -o proxy proxy_parse.o proxy.o -lpthread
+# Define all the object files that will be created
+OBJECTS=main.o ProxyServer.o CacheManager.o HTTPRequest.o
 
+# The default 'all' rule, which builds the final executable
+all: $(TARGET)
+
+# Rule to link all the object files into the final executable
+$(TARGET): $(OBJECTS)
+	$(CC) $(CFLAGS) -o $(TARGET) $(OBJECTS)
+
+# Rule to compile main.cpp into main.o
+main.o: main.cpp ProxyServer.hpp
+	$(CC) $(CFLAGS) -c main.cpp
+
+# Rule to compile ProxyServer.cpp into ProxyServer.o
+ProxyServer.o: ProxyServer.cpp ProxyServer.hpp CacheManager.hpp HTTPRequest.hpp
+	$(CC) $(CFLAGS) -c ProxyServer.cpp
+
+# Rule to compile CacheManager.cpp into CacheManager.o
+CacheManager.o: CacheManager.cpp CacheManager.hpp
+	$(CC) $(CFLAGS) -c CacheManager.cpp
+
+# Rule to compile HTTPRequest.cpp into HTTPRequest.o
+HTTPRequest.o: HTTPRequest.cpp HTTPRequest.hpp
+	$(CC) $(CFLAGS) -c HTTPRequest.cpp
+
+# The 'clean' rule to remove all compiled files
 clean:
-	rm -f proxy *.o
-
-tar:
-	tar -cvzf ass1.tgz proxy_server_with_cache.c README Makefile proxy_parse.c proxy_parse.h
+	rm -f $(TARGET) $(OBJECTS)

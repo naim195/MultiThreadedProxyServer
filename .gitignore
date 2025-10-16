@@ -1,0 +1,3 @@
+# Ignore compiled object files
+*.o
+/venv
