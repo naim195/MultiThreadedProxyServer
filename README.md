@@ -1,6 +1,6 @@
 # Multi-Threaded Proxy Server
 
-A high-performance HTTP/1.1 proxy server implementation in C++17 with LRU caching and multi-threaded request handling.
+A HTTP/1.1 proxy server implementation in C++17 with LRU caching and multi-threaded request handling.
 
 ## Features
 
@@ -86,4 +86,4 @@ python3 script.py 8081    # Run benchmark
 
 ## Notes
 
-The implementation uses modern C++17 idioms throughout, with zero manual memory management (`malloc`/`free` or raw `new`/`delete`). All dynamic memory is managed through STL containers and smart pointers, providing automatic cleanup and exception safety. The benchmark results demonstrate the LRU cache working correctly with all test URLs showing successful cache hits (MISS → HIT state), with dramatic latency reductions (68-99%) that eliminate network round-trips to remote servers.
+The implementation uses modern C++17 idioms throughout, with zero manual memory management (`malloc`/`free` or raw `new`/`delete`). All dynamic memory is managed through STL containers and smart pointers, providing automatic cleanup and exception safety. The benchmark results demonstrate the LRU cache working correctly with all test URLs showing successful cache hits (MISS → HIT state), with latency reductions (68-99%) that eliminate network round-trips to remote servers.
