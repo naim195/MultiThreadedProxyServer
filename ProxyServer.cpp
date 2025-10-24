@@ -64,7 +64,7 @@ void ProxyServer::run() {
 
 
 void ProxyServer::handle_client(int client_socket) {
-    std::vector<char> buffer(8192); // Use a larger buffer
+    std::vector<char> buffer(65536); // Use a larger buffer
     std::string raw_request;
 
     int bytes_received = recv(client_socket, buffer.data(), buffer.size(), 0);

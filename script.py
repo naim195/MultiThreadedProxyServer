@@ -9,8 +9,6 @@ URLS_TO_TEST = [
     "http://info.cern.ch/hypertext/WWW/TheProject.html",
     # A medium-sized (~580KB) plain text file. Good for showing a clear difference.
     "http://www.textfiles.com/humor/devils.jok",
-    # A very large (~6MB) plain text file. Will show a dramatic speed-up.
-    "http://norvig.com/big.txt",
     # Another classic, small text file.
     "http://www.360doc.com/index.html"
 ]
