@@ -1,9 +1,3 @@
-You're asking me to provide the complete README without the citation tags.
-
-## Answer
-
-Here's the complete README for the Multi-Threaded Proxy Server without citations:
-
 # Multi-Threaded Proxy Server
 
 A high-performance HTTP/1.1 proxy server implementation in C++17 with LRU caching and multi-threaded request handling.
